@@ -50,3 +50,9 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+# Speficif files and directories
+input/
+.vscode/
+ex1
+.clang-format
