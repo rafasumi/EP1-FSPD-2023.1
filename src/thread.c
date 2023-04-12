@@ -6,6 +6,6 @@ void* trio_thread_routine(void* args) {
   spend_time(t_args->tid, t_args->ttype, "S", t_args->tsolo);
   trio_enter(t_args->trio, t_args->ttype);
   spend_time(t_args->tid, t_args->ttype, "T", t_args->ttrio);
-  trio_leave(t_args->trio);
+  trio_leave(t_args->trio, t_args->ttype);
   pthread_exit(NULL);
 }

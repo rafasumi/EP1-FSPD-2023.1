@@ -10,22 +10,28 @@
 int main() {
   char line[42];
   pthread_t threads[MAX_THREADS];
+  thread_args args[MAX_THREADS];
 
-  thread_args args;
   trio_t trio;
   init_trio(&trio);
-  args.trio = &trio;
 
   while (fgets(line, sizeof line, stdin) != NULL) {
-    args.tid = atoi(strtok(line, " "));
-    args.ttype = atoi(strtok(NULL, " "));
-    args.tsolo = atoi(strtok(NULL, " "));
-    args.ttrio = atoi(strtok(NULL, " "));
+    int index = atoi(strtok(line, " ")) - 1;
+    args[index].tid = index + 1;
+    args[index].ttype = atoi(strtok(NULL, " "));
+    args[index].tsolo = atoi(strtok(NULL, " "));
+    args[index].ttrio = atoi(strtok(NULL, " "));
+    args[index].trio = &trio;
 
-    printf("%d %d %d %d\n", args.tid, args.ttype, args.tsolo, args.ttrio);
-    pthread_create(&threads[args.tid - 1], NULL, trio_thread_routine,
-                   (void*)&args);
+    pthread_create(&threads[index], NULL, trio_thread_routine,
+                   (void*)&args[index]);
   }
+
+  for (int i = 0; i < MAX_THREADS; i++) {
+    pthread_join(threads[i], NULL);
+  }
+
+  destroy_trio(&trio);
 
   return 0;
 }
