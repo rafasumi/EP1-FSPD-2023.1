@@ -17,5 +17,5 @@ $(OBJ_FOLDER)%.o: $(SRC_FOLDER)%.c
 build: $(OBJ)
 	$(CC) -o $(TARGET) $(OBJ) $(LIBS)
 
-clear:
+clean:
 	@rm -rf $(OBJ_FOLDER) $(TARGET)
