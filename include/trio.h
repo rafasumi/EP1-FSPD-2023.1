@@ -7,8 +7,9 @@ typedef struct {
   pthread_mutex_t mutex;
   pthread_cond_t end_trio;
   pthread_cond_t new_type;
-  int trio_types[3];
+  int reserved_type[3];
   int leave_count;
+  int trio_running;
 } trio_t;
 
 void init_trio(trio_t* t);
