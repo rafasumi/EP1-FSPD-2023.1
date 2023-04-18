@@ -6,16 +6,17 @@
 #include <string.h>
 
 #define MAX_THREADS 1000
+#define MAX_LINE 42
 
 int main() {
-  char line[42];
+  char line[MAX_LINE];
   pthread_t threads[MAX_THREADS];
   thread_args args[MAX_THREADS];
 
   trio_t trio;
   init_trio(&trio);
 
-  while (fgets(line, sizeof line, stdin) != NULL) {
+  while (fgets(line, MAX_LINE, stdin) != NULL) {
     int index = atoi(strtok(line, " ")) - 1;
     args[index].tid = index + 1;
     args[index].ttype = atoi(strtok(NULL, " "));
