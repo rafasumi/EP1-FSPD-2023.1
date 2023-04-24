@@ -1,5 +1,5 @@
 CC = gcc
-LIBS = -lm
+LIBS = -lm -lpthread
 
 INCLUDE_FOLDER = ./include/
 OBJ_FOLDER = ./obj/
