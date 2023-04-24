@@ -1,3 +1,8 @@
+/***************************************************************************
+ *  thread.c
+ *  Implementação da função a ser usada como start routine no ptread_create.
+ ***************************************************************************/
+
 #include "thread.h"
 #include "spend_time.h"
 
